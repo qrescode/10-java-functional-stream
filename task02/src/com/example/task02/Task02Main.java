@@ -16,8 +16,11 @@ public class Task02Main {
 
     public static IntStream cycleGrayCode(int n) {
 
-        return null; // your implementation here
-
+        if (n < 1 || n > 16) {
+            throw new IllegalArgumentException("1 <= n <= 16");
+        }
+        int max = 1 << n;
+        return IntStream.iterate(0, i -> (i + 1) % max)
+                .map(i -> i ^ (i >> 1));
     }
-
 }
